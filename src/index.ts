@@ -1,4 +1,4 @@
-import express, { NextFunction, Request, Response } from "express";
+import express, { Request, Response } from "express";
 import cors from "cors";
 import "dotenv/config";
 import mongoose from "mongoose";
@@ -21,10 +21,10 @@ cloudinary.config(cloudinaryConfig);
 
 const app = express();
 
+app.use(cors());
+
 // For parsing application/json
 app.use(express.json());
-
-app.use(cors());
 
 app.get("/health", async (req: Request, res: Response) => {
   res.send({ message: "health ok!" });
@@ -32,6 +32,8 @@ app.get("/health", async (req: Request, res: Response) => {
 
 // /api/my/user
 app.use("/api/my/user", myUserRoute);
+
+// /api/my/restaurant
 app.use("/api/my/restaurant", myRestaurantRoute);
 
 app.listen(7000, () => {

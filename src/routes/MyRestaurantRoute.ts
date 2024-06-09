@@ -17,13 +17,13 @@ const upload = multer({
   }
 });
 
-// /api/myresturant
+// /api/my/resturant
 router.post(
   "/",
+  upload.single("imageFile"),
   validateMyRestaurantRequest,
   jwtCheck,
   jwtParse,
-  upload.single("imageFile"),
   myResturentController.createMyResturent
 );
 

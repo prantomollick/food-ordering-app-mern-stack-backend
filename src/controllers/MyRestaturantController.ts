@@ -24,6 +24,8 @@ const createMyResturent = async (
 
     const uploadResponse = await cloudinary.v2.uploader.upload(dataURI);
 
+    console.log(req.body);
+
     const restaurant = new Restaurant(req.body);
 
     restaurant.imageUrl = uploadResponse.url;
